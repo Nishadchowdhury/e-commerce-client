@@ -1,5 +1,6 @@
 import getProduct from "@/actions/get-product";
 import getProducts from "@/actions/get-products";
+import Info from "@/components/Info";
 import ProductList from "@/components/ProductList";
 import Gallery from "@/components/gallery";
 import Container from "@/components/ui/custom/Container";
@@ -7,6 +8,9 @@ import Container from "@/components/ui/custom/Container";
 interface pageProps {
     params: { productId: string }
 }
+
+export const revalidate = 0;
+
 const page: React.FC<pageProps> = async ({
     params
 }) => {
@@ -23,15 +27,11 @@ const page: React.FC<pageProps> = async ({
                 <div className="px-4 py-10 sm:px-6 lg:px-8">
                     <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 ">
                         {/* Gallery */}
-                        <Gallery 
-                        
+                        <Gallery
+                            images={product.images}
                         />
                         {/* Info */}
-                        <div
-                            className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0"
-                        >
-                            Info
-                        </div>
+                        <Info data={product} />
                     </div>
                     <hr className="my-10" />
 
