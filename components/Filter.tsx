@@ -39,7 +39,7 @@ const Filter: React.FC<pageProps> = ({
             query // it's the query string
         }, { skipNull: true }); // ti means if any of key holds nullish values then will not add to the url
 
-       
+        router.push(url)
     };
 
     return (
@@ -56,7 +56,7 @@ const Filter: React.FC<pageProps> = ({
                         <Button
                             className={cn(
                                 "rounded-md text-sm text-gray-800 p-2 bg-white border border-gray-300 ",
-                                selectedValue === filter.id && "bg-black"
+                                selectedValue === filter.id && "bg-black text-gray-200"
                             )}
 
                             onClick={() => onClick(filter.id)}

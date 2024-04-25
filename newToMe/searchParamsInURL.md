@@ -30,6 +30,12 @@ const current = queryString.parse(searchParams.toString());
         router.push(url)
     };
 
+
+
+
+    ==> url: window.location.href => that how I get 
+    ==> router.push(url) => that how I set 
+
 ## the way we should style and manipulate the UI.
 
 <!--
