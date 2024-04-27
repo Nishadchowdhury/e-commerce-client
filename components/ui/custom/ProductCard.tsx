@@ -10,6 +10,7 @@ import { Product } from "@/types";
 import IconButton from "@/components/ui/custom/IconButton";
 import Currency from "./Currency";
 import usePreviewModal from "@/hooks/use-preview-modal";
+import useCart from "@/hooks/use-cart";
 
 
 interface pageProps {
@@ -18,6 +19,7 @@ interface pageProps {
 const ProductCard: React.FC<pageProps> = ({ data }) => {
 
     const previewModal = usePreviewModal();
+    const cart = useCart();
 
     const router = useRouter();
     const handleClick = () => {
@@ -29,6 +31,15 @@ const ProductCard: React.FC<pageProps> = ({ data }) => {
         e.stopPropagation();
         previewModal.onOpen((data))
     }
+
+    const onAddToCart: MouseEventHandler<HTMLButtonElement> = e => {
+        // it is import to prevent the event propagation because the root element has an onClick.
+        e.stopPropagation();
+
+        cart.addItem(data)
+    }
+
+
 
     return (
         <div onClick={handleClick} className='bg-white group cursor-pointer rounded-xl border p-3 space-y-4' >
@@ -51,7 +62,7 @@ const ProductCard: React.FC<pageProps> = ({ data }) => {
                         />
 
                         <IconButton
-                            onClick={() => { }}
+                            onClick={onAddToCart}
                             icon={<ShoppingCart size={20} className="text-gray-600" />}
                         />
                     </div>
